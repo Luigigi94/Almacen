@@ -13,33 +13,33 @@ class Template
 {
     public function header()
     {
+        ?>
+        <!DOCTYPE html>
+        <html lang="en">
 
+        <head>
 
-    ?>
-<!DOCTYPE html>
-    <html lang="en">
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <meta name="description" content="">
+            <meta name="author" content="">
 
-    <head>
+            <title>SB Admin - Dashboard</title>
 
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
+            <!-- Custom fonts for this template-->
+            <link href="<?=URL?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
-        <title>SB Admin - Dashboard</title>
+            <!-- Page level plugin CSS-->
+            <link href="<?=URL?>vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
-        <!-- Custom fonts for this template-->
-        <link href="<?=URL?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+            <!-- Custom styles for this template-->
+            <link href="<?=URL?>Public/CSS/sb-admin.css" rel="stylesheet">
 
-        <!-- Page level plugin CSS-->
-        <link href="<?=URL?>vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+            <script src="<?=URL?>vendor/jquery/jquery.min.js"></script>
 
-        <!-- Custom styles for this template-->
-        <link href="<?=URL?>Public/CSS/sb-admin.css" rel="stylesheet">
-
-    </head>
-        <?php if (isset($_SESSION["email"])) { ?>
+        </head>
+        <?php if (isset($_SESSION["email"])) {?>
         <body id="page-top">
 
         <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
@@ -108,30 +108,32 @@ class Template
         </nav>
 
         <div id="wrapper">
-
+        <?php
+        if ($_SESSION["is_admin"]==1){
+//            echo $_SESSION["email"]." y ".$_SESSION["is_admin"];
+    ?>
         <!-- Sidebar -->
         <ul class="sidebar navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="<?=URL?>inicioAdmin">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
+                    <span>Principal</span>
                 </a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
+                    <span>Usuarios</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                    <h6 class="dropdown-header">Login Screens:</h6>
-                    <a class="dropdown-item" href="login.html">Login</a>
-                    <a class="dropdown-item" href="register.html">Register</a>
-                    <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
+                    <h6 class="dropdown-header">Opciones:</h6>
+                    <a class="dropdown-item" href="<?=URL?>Alta">Crear</a>
+                    <a class="dropdown-item" href="<?=URL?>Baja">Eliminar</a>
                     <div class="dropdown-divider"></div>
-                    <h6 class="dropdown-header">Other Pages:</h6>
-                    <a class="dropdown-item" href="404.html">404 Page</a>
-                    <a class="dropdown-item" href="blank.html">Blank Page</a>
+                    <h6 class="dropdown-header">Otras Paginas:</h6>
+                    <a class="dropdown-item" href="#">Almacen</a>
+                    <a class="dropdown-item" href="#">Sucursales</a>
                 </div>
             </li>
             <li class="nav-item">
@@ -146,11 +148,51 @@ class Template
             </li>
         </ul>
 
-        <div id="content-wrapper">
+
         <?php
+    }
+        else{
+            echo "<ul class='sidebar navbar-nav'>
+            <li class='nav-item active'>
+                <a class='nav-link' href='index.html'>
+                    <i class='fas fa-fw fa-tachometer-alt'></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class='nav-item dropdown'>
+                <a class='nav-link dropdown-toggle' href=''#' id='pagesDropdown' role='button' data-toggle='dropdown'
+                   aria-haspopup='true' aria-expanded='false'>
+                    <i class='fas fa-fw fa-folder'></i>
+                    <span>Pages</span>
+                </a>
+                <div class='dropdown-menu' aria-labelledby='pagesDropdown'>
+                    <h6 class='dropdown-header'>Login Screens:</h6>
+                    <a class='dropdown-item' href='login.html'>Login</a>
+                    <a class='dropdown-item' href='register.html'>Register</a>
+                    <a class='dropdown-item' href='forgot-password.html'>si sirve con el gerente alv</a>
+                    <div class='dropdown-divider'></div>
+                    <h6 class='dropdown-header'>Other Pages:</h6>
+                    <a class='dropdown-item' href='404.html'>404 Page</a>
+                    <a class='dropdown-item' href='blank.html'>Blank Page</a>
+                </div>
+            </li>
+            <li class='nav-item'>
+                <a class='nav-link' href='charts.html'>
+                    <i class='fas fa-fw fa-chart-area'></i>
+                    <span>Charts</span></a>
+            </li>
+            <li class='nav-item'>
+                <a class='nav-link' href='tables.html'>
+                    <i class='fas fa-fw fa-table'></i>
+                    <span>Tables</span></a>
+            </li>
+        </ul>";
+        }
+
+        ?>
+               <div id="content-wrapper"> <?php
         }
     }
-
     public function Footer()
     {
         ?>
@@ -196,7 +238,7 @@ class Template
         </div>
 
         <!-- Bootstrap core JavaScript-->
-        <script src="<?=URL?>vendor/jquery/jquery.min.js"></script>
+
         <script src="<?=URL?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
         <!-- Core plugin JavaScript-->
@@ -212,7 +254,7 @@ class Template
 
         <!-- Demo scripts for this page-->
         <script src="<?=URL?>Public/JS/demo/datatables-demo.js"></script>
-        <script src="<?=URL?>Public/JS/demo/chart-area-demo.js"></script>
+<!--        <script src="--><?//=URL?><!--Public/JS/demo/chart-area-demo.js"></script>-->
 
         </body>
 

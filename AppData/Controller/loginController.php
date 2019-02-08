@@ -29,10 +29,21 @@ class loginController
             $this->login->set("password", $_POST["password"]);
             $datos = $this->login->comprobar();
             if (mysqli_num_rows($datos) > 0) {
-                $datos=mysqli_fetch_assoc($datos);
-                $_SESSION["email"]=$datos["email"];
-                header("Location:" . URL . "inicio");
-                echo($_SESSION["nombre"]);
+
+                $admin= $this->login->comprobar_admin();
+                if (mysqli_num_rows($admin)>0){
+                    $eladmin=mysqli_fetch_assoc($admin);
+                    $_SESSION=$eladmin;
+                    header("Location:".URL."inicioAdmin");
+//                    echo ($_SESSION["email"]);
+                }
+                else {
+                    $datosusados = $this->login->comprobar();
+                    $datosgerentes = mysqli_fetch_assoc($datosusados);
+                    $_SESSION = $datosgerentes;
+                    header("Location:" . URL . "inicioGerente");
+//                    echo($_SESSION["nombre"]);
+                }
             }
             else {
                 $_SESSION["error_login"] = "los datos no coinciden con nuestros registros";
@@ -43,7 +54,5 @@ class loginController
     public function logout()
     {
         session_destroy();
-
     }
-
 }

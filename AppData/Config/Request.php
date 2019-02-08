@@ -22,7 +22,7 @@ class Request
                 $ruta = array_filter($ruta);
                 //print_r($ruta); //sirve para imprimir arreglos
                 if ($ruta[0] == "index.php") {
-                    $this->controlador = "inicio";
+                    $this->controlador = "inicioAdmin";
                 } else {
                     $this->controlador = strtolower(array_shift($ruta));
                 }
@@ -31,7 +31,7 @@ class Request
                     $this->metodo = "index";
                 $this->argumento = $ruta;
             } else {
-                $this->controlador = "inicio";
+                $this->controlador = "inicioAdmin";
                 $this->metodo = "index";
             }
         }

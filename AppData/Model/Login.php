@@ -36,4 +36,11 @@ class Login
         return $datos;
     }
 
+    public function comprobar_admin()
+    {
+        $sql="SELECT * FROM {$this->tabla} WHERE email='{$this->email}' and is_admin=1";
+        $datos=$this->conexion->QuerResultado($sql);
+        return $datos;
+    }
+
 }
