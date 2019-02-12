@@ -64,8 +64,8 @@ class Template
             </form>
 
             <!-- Navbar -->
-            <ul class="navbar-nav ml-auto ml-md-0">
-                <li class="nav-item dropdown no-arrow mx-1">
+            <ul class="navbar-nav ml-auto ml-md-0 hoverli">
+                <li class="nav-item dropdown no-arrow mx-1 hoverli">
                     <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-bell fa-fw"></i>
@@ -78,7 +78,7 @@ class Template
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
                 </li>
-                <li class="nav-item dropdown no-arrow mx-1">
+                <li class="nav-item dropdown no-arrow mx-1 hoverli">
                     <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-envelope fa-fw"></i>
@@ -91,7 +91,7 @@ class Template
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
                 </li>
-                <li class="nav-item dropdown no-arrow">
+                <li class="nav-item dropdown no-arrow hoverli">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-user-circle fa-fw"></i>
@@ -254,6 +254,13 @@ class Template
 
         <!-- Demo scripts for this page-->
         <script src="<?=URL?>Public/JS/demo/datatables-demo.js"></script>
+        <script type="text/javascript">
+            $(".hoverli").hover(function () {
+                $("ul.nav-item").slideDown('medium');
+            }, function () {
+                $("ul.nav-item").slideUp("medium");
+            });
+        </script>
 <!--        <script src="--><?//=URL?><!--Public/JS/demo/chart-area-demo.js"></script>-->
 
         </body>
